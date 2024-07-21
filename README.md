@@ -4,8 +4,16 @@ This repository contains a custom ROS package named mrob_highlight_controller. T
 
 ## Map creation
 The map of any unknown environment can be created using the gmapping package. To create the map, first run the mapping launch file, and then control the robot using the teleop keyboard to explore the environment and generate the map.
+To launch the mapping.launch file (you should first navigate inside the launch folder of the package and then, use the following command): 
+```bash
+roslaunch mapping.launch
+```
 
-![Map](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/autorace_map.png)
+![Map](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/map_creation.png)
+
+Keep exploring the environment until the entire area is mapped.
+
+![Map](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/map.png)
 
 ## Below are the results
 ### Creating a circle 
