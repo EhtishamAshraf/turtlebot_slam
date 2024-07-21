@@ -2,12 +2,16 @@
 
 This repository contains a custom ROS package named mrob_highlight_controller. This package facilitates the creation of a 2D map of an unknown environment using the slam_gmapping node from the gmapping package. It also enables navigation to a specific point using the move_base node from the move_base package and performs localization using the amcl node.
 
+### Demo Video
+You can watch the demo video by clicking on the below image
+[![Watch the video](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/rviz.png)](https://youtu.be/IOqr1lV64xU)
+
 ## Map creation
 The map of any unknown environment can be created using the gmapping package. To create the map, first run the mapping launch file, and then control the robot using the teleop keyboard to explore the environment and generate the map.
 
 ### Note 
 1.  Map is already created and saved inside the maps folder of the package, so you don't have to recreate the map.
-2.  Details about cloning the repository are given at the end of the **readme file**
+2.  Details about cloning the repository are given at the end of this **readme file**
 
 To launch the mapping.launch file (you should first navigate inside the launch folder of the package and then, use the following command): 
 ```bash
