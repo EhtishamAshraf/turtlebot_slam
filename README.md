@@ -50,20 +50,6 @@ mkdir slam_ws
 ```bash
 cd slam_ws
 ```
-```bash
-mkdir src
-```
-Run the below commands in root folder of the workspace
-```bash
-catkin_make 
-```
-```bash
-source devel/setup.bash 
-```
-Navigate to the src folder and clone the repository
-```bash
-cd src 
-```
 # Clone the repository
 ```bash
 sudo apt-get update
@@ -77,6 +63,13 @@ git clone https://github.com/EhtishamAshraf/turtlebot_slam.git
 roscore must be running in order for ROS nodes to communicate. Open a new terminal and run roscore with this command:
 ```bash
 roscore 
+```
+Run the below commands in root folder of the workspace
+```bash
+catkin_make 
+```
+```bash
+source devel/setup.bash 
 ```
 Press Enter and navigate to the launch folder inside the package
 ```bash
