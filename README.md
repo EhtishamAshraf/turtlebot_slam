@@ -4,6 +4,7 @@ This repository contains a custom ROS package named mrob_highlight_controller. T
 
 ## Map creation
 The map of any unknown environment can be created using the gmapping package. To create the map, first run the mapping launch file, and then control the robot using the teleop keyboard to explore the environment and generate the map.
+
 To launch the mapping.launch file (you should first navigate inside the launch folder of the package and then, use the following command): 
 ```bash
 roslaunch mapping.launch
@@ -15,37 +16,49 @@ Keep exploring the environment until the entire area is mapped.
 
 ![Map](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/map.png)
 
-## Below are the results
-### Creating a circle 
-![Circle](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/circle.png)
+Once the map is created, create a new folder where you can save the maps:
+```bash
+mkdir maps
+```
+The map can be saved using the following command:
+```bash
+rosrun map_server map_saver -f turtlebot3_world_map
+```
 
-### Creating a square 
-![Square](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/square_start.png)
-![Square](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/square.png)
+## Navigation
+Once the map is saved, you can start navigating in the environment. To launch the navigation.launch file (you should first navigate inside the launch folder of the package and then, use the following command): 
+```bash
+roslaunch navigation.launch use_gazebo:=true
+```
+#### Note: 
+use_gazebo:=true should be added to open the gazebo simulation.
 
-### Creating a rectangle 
-![Rectangle](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/rectangle.png)
+### Important
+1.  To confirm the robot's pose, you need to use the **2D Pose Estimate** feature. Click on the 2D Pose Estimate button from the Toolbar, then click on the map where you see the robot is located. This sets the initial position and orientation of the robot on the map. This step is crucial because it helps the robot understand where it is in relation to the map, ensuring accurate navigation and path planning.
 
-### Creating a triangle 
-![Triangle](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/triangle.png)
+2.  The robot won't move, because you have to specify target position first. To set goal position for robot click on **2D nav goal** button from Toolbar, then click a place in **Visualization window**, that will be destination for your robot. Observe as path is generated (you should see a line from your robot pointing to direction) and robot is moving to its destination. 
 
-### Moving towards goal 
-![Goal](https://github.com/EhtishamAshraf/ros_turtle_shapes/blob/main/goal.png)
+![RVIZ](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/rviz.png)
+
+![Gazebo](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/gazebo.png)
 
 # Create Ros Workspace
 Open shell and execute the following commands:
 ```bash
-mkdir my_ros_ws
+mkdir slam_ws
 ```
 ```bash
-cd my_ros_ws
+cd slam_ws
 ```
 ```bash
 mkdir src
 ```
-Run the below command in root folder of the workspace
+Run the below commands in root folder of the workspace
 ```bash
 catkin_make 
+```
+```bash
+source devel/setup.bash 
 ```
 Navigate to the src folder and clone the repository
 ```bash
@@ -59,30 +72,21 @@ sudo apt-get update
 sudo apt-get install git
 ```
 ```bash
-git clone https://github.com/EhtishamAshraf/ros_turtle-shapes.git
-```
-Run the command below, to make the python file executable. Run the command in the src folder (where the python file is present)
-```bash
-chmod +x turtle_shapes.py
+git clone https://github.com/EhtishamAshraf/turtlebot_slam.git
 ```
 roscore must be running in order for ROS nodes to communicate. Open a new terminal and run roscore with this command:
 ```bash
-roscore &
+roscore 
 ```
-Press Enter and write the command below to open turtlesim : (Assuming that turtlesim is already installed!) 
+Press Enter and navigate to the launch folder inside the package
 ```bash
-rosrun turtlesim turtlesim_node 
+roslaunch navigation.launch use_gazebo:=true
 ```
-Open a new shell windown, navigate to the root of the workspace and then run the following the commands in sequence:
-Command to build the package
+
+## Note
+Create symbolic link of **robotics_course** and **teleop_twist_keyboard** packages inside the **src** folder of the workspace
+Symbolic link can be created with this command:
 ```bash
-catkin_make
+ln -s ~/slam/existing_packages/robotics_course
 ```
-Command to add environment variables needed by ROS
-```bash
-source devel/setup.bash
-```
-Run the code:
-```bash
-rosrun ros_turtle-shapes turtle_shapes.py
-```
+
