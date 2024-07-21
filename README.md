@@ -4,7 +4,7 @@ This repository contains a custom ROS package named mrob_highlight_controller. T
 
 ### Demo Video
 You can watch the demo video by clicking on the below image
-[![Watch the video](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/rviz.png)](https://youtu.be/IOqr1lV64xU)
+[![Watch the video](https://github.com/EhtishamAshraf/turtlebot_slam/blob/main/src/mrob_highlight_controller/maps/rviz.png)](https://youtu.be/E09mhgvatxQ)
 
 ## Map creation
 The map of any unknown environment can be created using the gmapping package. To create the map, first run the mapping launch file, and then control the robot using the teleop keyboard to explore the environment and generate the map.
