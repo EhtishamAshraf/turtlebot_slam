@@ -1,0 +1,34 @@
+<!-- 
+This launch file, uses move_base package to navigate the robot in the Environment. 
+For localization, this node imports the localization.launch file as well. 
+
+Reference: https://husarion.com/tutorials/ros-tutorials/9-navigation/
+-->
+
+<launch>
+
+   <!-- variables definition -->
+   <arg name="use_gazebo" default="false" />
+   <arg name="map_name" default="turtlebot3_world_map.yaml"/>
+
+   <!-- Localization -->
+   <include file="$(find mrob_highlight_controller)/launch/localization.launch">
+      <arg name="use_gazebo" value="$(arg use_gazebo)" />
+      <arg name="map_name" default="$(arg map_name)"/>
+   </include>
+
+   <!-- Path planning -->
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <rosparam file="$(find mrob_highlight_controller)/config/move_base.yaml" command="load" />
+      <rosparam file="$(find mrob_highlight_controller)/config/costmap_common.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find mrob_highlight_controller)/config/costmap_common.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find mrob_highlight_controller)/config/costmap_global.yaml" command="load" />
+      <rosparam file="$(find mrob_highlight_controller)/config/costmap_local.yaml" command="load" />
+      <rosparam file="$(find mrob_highlight_controller)/config/planner_global.yaml" command="load" />
+      <rosparam file="$(find mrob_highlight_controller)/config/planner_local.yaml" command="load" />
+   </node>
+
+    <!-- Rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find mrob_highlight_controller)/rviz/move_base.rviz" />
+
+</launch>
