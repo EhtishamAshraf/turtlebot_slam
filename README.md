@@ -5,6 +5,10 @@ This repository contains a custom ROS package named mrob_highlight_controller. T
 ## Map creation
 The map of any unknown environment can be created using the gmapping package. To create the map, first run the mapping launch file, and then control the robot using the teleop keyboard to explore the environment and generate the map.
 
+### Note 
+1.  Map is already created and saved inside the maps folder of the package, so you don't have to recreate the map.
+2.  Details about cloning the repository are given at the end of the **readme file**
+
 To launch the mapping.launch file (you should first navigate inside the launch folder of the package and then, use the following command): 
 ```bash
 roslaunch mapping.launch
@@ -45,10 +49,10 @@ use_gazebo:=true should be added to open the gazebo simulation.
 # Create Ros Workspace
 Open shell and execute the following commands:
 ```bash
-mkdir slam_ws
+mkdir slam_repo
 ```
 ```bash
-cd slam_ws
+cd slam_repo
 ```
 # Clone the repository
 ```bash
@@ -58,7 +62,7 @@ sudo apt-get update
 sudo apt-get install git
 ```
 ```bash
-git clone https://github.com/EhtishamAshraf/turtlebot_slam.git
+git clone https://github.com/EhtishamAshraf/turtlebot_slam_ws.git
 ```
 roscore must be running in order for ROS nodes to communicate. Open a new terminal and run roscore with this command:
 ```bash
@@ -77,9 +81,10 @@ roslaunch navigation.launch use_gazebo:=true
 ```
 
 ## Note
-Create symbolic link of **robotics_course** and **teleop_twist_keyboard** packages inside the **src** folder of the workspace
+Symbolic link of **robotics_course** and **teleop_twist_keyboard** packages can be created inside the **src** folder of the workspace, if you have saved these packages in another folder (let's say name of the folder is **git**, and it is present on **Desktop**)
 Symbolic link can be created with this command:
 ```bash
-ln -s ~/slam/existing_packages/robotics_course
+ln -s ~/Desktop/git/robotics_course
 ```
+Remember: The above command should be executed inside the folder where you want to create the symbolic links (in our case inside the src folder)
 
